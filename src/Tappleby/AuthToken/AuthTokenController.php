@@ -54,6 +54,8 @@ class AuthTokenController extends Controller {
 
     $payload = $this->getAuthToken();
     $user = $this->driver->validate($payload);
+
+    Log::info($user);
     
     $user->load('position', 'sites', 'roles', 'roleIds', 'avatar');
 
