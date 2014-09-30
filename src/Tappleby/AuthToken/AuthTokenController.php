@@ -55,7 +55,9 @@ class AuthTokenController extends Controller {
     $payload = $this->getAuthToken();
     $user = $this->driver->validate($payload);
     
-    $user->load('position', 'sites', 'roles', 'roleIds', 'avatar');
+    if ($user) {
+    	$user->load('position', 'sites', 'roles', 'roleIds', 'avatar');
+    }
 
     if(!$user) {
       throw new NotAuthorizedException();
